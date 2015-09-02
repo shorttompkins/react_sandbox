@@ -10,12 +10,12 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('copy', function() {
-  return gulp.src('client/www/index.html')
+  return gulp.src('client/index.html')
     .pipe(gulp.dest('build'));
 });
 
 gulp.task('browserify', function() {
-  return gulp.src('client/index.js')
+  return gulp.src('client/js/main.js')
     .pipe(browserify({transform: 'reactify'}))
     .pipe(concat('app.js'))
     .pipe(gulp.dest('build'));
@@ -26,6 +26,6 @@ gulp.task('build', function(cb) {
 });
 
 gulp.task('default', ['build'], function() {
-  gulp.watch('client/*/*', ['build']);
+  gulp.watch('client/**/*', ['build']);
   nodemon({ script: 'index.js', ignore: ['gulpfile.js', 'build', 'client', 'dist'] });
 });
