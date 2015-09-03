@@ -17,7 +17,7 @@ var App = React.createClass({
           <Location path="/item/:item" handler={CatalogDetail} />
         </Locations>
       </Template>
-    )
+    );
   }
 });
 

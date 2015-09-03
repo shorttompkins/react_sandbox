@@ -91,18 +91,18 @@ var AppStore = assign(EventEmitter.prototype, {
     var action = payload.action;
 
     switch(action.actionType) {
-      case AppConstants.ADD_ITEM:
-        _addItem(action.item);
-        break;
-      case AppConstants.REMOVE_ITEM:
-        _removeItem(action.index);
-        break;
-      case AppConstants.INCREASE_ITEM:
-        _increaseItem(action.index);
-        break;
-      case AppConstants.DECREASE_ITEM:
-        _decreaseItem(action.index);
-        break;
+    case AppConstants.ADD_ITEM:
+      _addItem(action.item);
+      break;
+    case AppConstants.REMOVE_ITEM:
+      _removeItem(action.index);
+      break;
+    case AppConstants.INCREASE_ITEM:
+      _increaseItem(action.index);
+      break;
+    case AppConstants.DECREASE_ITEM:
+      _decreaseItem(action.index);
+      break;
     }
 
     AppStore.emitChange();

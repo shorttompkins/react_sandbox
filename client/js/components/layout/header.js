@@ -10,7 +10,7 @@ var Header = React.createClass({
           View Shopping Cart
         </Link>
       </div>
-    )
+    );
   }
 });
 

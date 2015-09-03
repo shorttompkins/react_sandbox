@@ -19,13 +19,13 @@ var Catalog = React.createClass({
           <td>${item.cost}</td>
           <td><AddToCart item={item} /></td>
         </tr>
-      )
+      );
     });
     return (
       <table width="100%">
         {items}
       </table>
-    )
+    );
   }
 });
 

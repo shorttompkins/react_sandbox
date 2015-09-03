@@ -29,7 +29,7 @@ var Cart = React.createClass({
           </td>
           <td>${subtotal}</td>
         </tr>
-      )
+      );
     });
 
     return (
@@ -47,7 +47,7 @@ var Cart = React.createClass({
         </table>
         <Link href="/">Continue Shopping</Link>
       </div>
-    )
+    );
   }
 });
 
