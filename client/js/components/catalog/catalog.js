@@ -1,18 +1,19 @@
-var React = require('react'),
-    AppStore = require('../../stores/store'),
-    AddToCart = require('./addtocart');
+import React from 'react';
+import AddToCart from './addtocart.js';
+import AppStore from '../../stores/store.js';
 
-function getCatalog() {
+let _getCatalog = function() {
   return { items: AppStore.getCatalog() };
-}
+};
 
-var Catalog = React.createClass({
-  getInitialState: function() {
-    return getCatalog();
-  },
+class Catalog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = _getCatalog();
+  }
 
-  render: function() {
-    var items = this.state.items.map(function(item){
+  render() {
+    let items = this.state.items.map(function(item){
       return (
         <tr key={item.id}>
           <td>{item.title}</td>
@@ -27,6 +28,6 @@ var Catalog = React.createClass({
       </table>
     );
   }
-});
+}
 
-module.exports = Catalog;
+export default Catalog;

@@ -1,20 +1,27 @@
-var React = require('React'),
-    AppActions = require('../../actions/actions');
+import React from 'react';
+import AppActions from '../../actions/actions.js';
 
-var AddToCart = React.createClass({
-  propTypes: {
-    item: React.PropTypes.object
-  },
-  handler: function() {
+class AddToCart extends React.Component{
+  constructor() {
+    super();
+    this._handler = this._handler.bind(this);
+  }
+
+  _handler() {
     AppActions.addItem(this.props.item);
-  },
-  render: function() {
+  }
+
+  render() {
     return (
-      <button onClick={ this.handler }>
+      <button onClick={ this._handler }>
         Add To Cart
       </button>
     );
   }
-});
+}
 
-module.exports = AddToCart;
+AddToCart.propTypes = {
+  item: React.PropTypes.object
+};
+
+export default AddToCart;

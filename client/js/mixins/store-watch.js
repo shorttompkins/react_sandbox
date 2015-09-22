@@ -1,21 +1,18 @@
-var React = require('react'),
-    AppStore = require('../stores/store');
+import AppStore from '../stores/store';
 
-var StoreWatch = function(cb) {
+export default function(callback) {
   return {
-    getInitialState: function() {
-      return cb();
+    getInitialState() {
+      return callback();
     },
-    componentWillMount: function() {
+    componentWillMount() {
       AppStore.addChangeListener(this._onChange);
     },
-    componentWillUnmount: function() {
+    componentWillUnmount() {
       AppStore.removeChangeListener(this._onChange);
     },
-    _onChange: function() {
-      this.setState(cb());
+    _onChange() {
+      this.setState(callback());
     }
   };
-};
-
-module.exports = StoreWatch;
+}

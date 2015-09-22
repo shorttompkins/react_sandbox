@@ -1,9 +1,9 @@
-var gulp = require('gulp');
-var del = require('del');
-var browserify = require('gulp-browserify');
-var concat = require('gulp-concat');
-var runSequence = require('run-sequence');
-var nodemon = require('gulp-nodemon');
+var gulp = require('gulp'),
+    browserify = require('browserify'),
+    babelify = require('babelify'),
+    del = require('del'),
+    nodemon = require('gulp-nodemon'),
+    source = require('vinyl-source-stream');
 
 gulp.task('clean', function(cb) {
   del(['build/*'], cb);
@@ -14,18 +14,19 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('build'));
 });
 
-gulp.task('browserify', function() {
-  return gulp.src('client/js/main.js')
-    .pipe(browserify({transform: 'reactify'}))
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest('build'));
+gulp.task('transform', function () {
+  browserify({
+    entries: 'client/js/main.js',
+    extensions: ['.js'],
+    debug: true
+  })
+  .transform(babelify)
+  .bundle()
+  .pipe(source('app.js'))
+  .pipe(gulp.dest('build'));
 });
 
-gulp.task('build', function(cb) {
-  runSequence('clean', 'browserify', 'copy', cb);
-});
-
-gulp.task('default', ['build'], function() {
-  gulp.watch('client/**/*', ['build']);
+gulp.task('default', ['clean', 'transform', 'copy'], function() {
+  gulp.watch('client/**/*', ['transform']);
   nodemon({ script: 'index.js', ignore: ['gulpfile.js', 'build', 'client', 'dist'] });
 });

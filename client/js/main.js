@@ -1,9 +1,6 @@
-(function () {
-  var React = require('react'),
-      App = require('./components/app');
+import React from 'react';
+import App from './components/app';
 
-  //Needed for React Developer Tools
-  window.React = React;
+window.React = React;
 
-  React.render(<App />, document.body);
-})();
+React.render(<App />, document.body);

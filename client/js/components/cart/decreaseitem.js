@@ -1,16 +1,21 @@
-var React = require('React'),
-    AppActions = require('../../actions/actions');
+import React from 'react';
+import AppActions from '../../actions/actions.js';
 
-var DecreaseItem = React.createClass({
-  propTypes: {
-    index: React.PropTypes.number
-  },
-  handler: function() {
-    AppActions.decreaseItem(this.props.index);
-  },
-  render: function() {
-    return <button onClick={ this.handler }>-</button>;
+class DecreaseItem extends React.Component {
+  constructor() {
+    super();
+    this._handler = this._handler.bind(this);
   }
-});
+  _handler() {
+    AppActions.decreaseItem(this.props.index);
+  }
+  render() {
+    return (
+      <button onClick={ this._handler }>-</button>
+    );
+  }
+}
 
-module.exports = DecreaseItem;
+DecreaseItem.propTypes = { index: React.PropTypes.number };
+
+export default DecreaseItem;

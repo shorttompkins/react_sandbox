@@ -1,13 +1,11 @@
-import AppDispatcher from '../dispatchers/dispatcher';
-import AppConstants from '../constants/constants.js';
-import assign from 'react/lib/Object.assign';
-import { EventEmitter } from 'events';
+var AppDispatcher = require('../dispatchers/dispatcher'),
+    AppConstants = require('../constants/constants'),
+    assign = require('react/lib/Object.assign'),
+    EventEmitter = require('events').EventEmitter;
 
+var CHANGE_EVENT = 'change';
 
-const CHANGE_EVENT = 'change';
-
-let _catalog = [],
-    _cartItems = [];
+var _catalog = [];
 
 for(var i=1; i < 9; i++) {
   _catalog.push({
@@ -18,6 +16,8 @@ for(var i=1; i < 9; i++) {
     'cost': i
   });
 }
+
+var _cartItems = [];
 
 function _removeItem(index) {
   _cartItems[index].inCart = false;
@@ -62,56 +62,53 @@ function _cartTotals() {
 }
 
 
-
-
 var AppStore = assign(EventEmitter.prototype, {
-  emitChange() {
+  emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
 
-  addChangeListener(callback) {
+  addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
-  removeChangeListener(callback) {
+  removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  getCart() {
+  getCart: function() {
     return _cartItems;
   },
 
-  getCatalog() {
+  getCatalog: function() {
     return _catalog;
   },
 
-  getCartTotals() {
+  getCartTotals: function() {
     return _cartTotals();
-  }
+  },
+
+  dispatcherIndex: AppDispatcher.register(function(payload) {
+    var action = payload.action;
+
+    switch(action.actionType) {
+    case AppConstants.ADD_ITEM:
+      _addItem(action.item);
+      break;
+    case AppConstants.REMOVE_ITEM:
+      _removeItem(action.index);
+      break;
+    case AppConstants.INCREASE_ITEM:
+      _increaseItem(action.index);
+      break;
+    case AppConstants.DECREASE_ITEM:
+      _decreaseItem(action.index);
+      break;
+    }
+
+    AppStore.emitChange();
+
+    return true;
+  })
 });
 
-AppStore.dispatcherIndex = AppDispatcher.register(function(payload) {
-  var action = payload.action;
-
-  switch(action.actionType) {
-  case AppConstants.ADD_ITEM:
-    _addItem(action.item);
-    break;
-  case AppConstants.REMOVE_ITEM:
-    _removeItem(action.index);
-    break;
-  case AppConstants.INCREASE_ITEM:
-    _increaseItem(action.index);
-    break;
-  case AppConstants.DECREASE_ITEM:
-    _decreaseItem(action.index);
-    break;
-  }
-
-  AppStore.emitChange();
-
-  return true;
-});
-
-
-export default AppStore;
+module.exports = AppStore;

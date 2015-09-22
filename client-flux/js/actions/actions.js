@@ -1,29 +1,31 @@
-import AppConstants from '../constants/constants';
-import AppDispatcher from '../dispatchers/dispatcher';
+var AppConstants = require('../constants/constants'),
+    AppDispatcher = require('../dispatchers/dispatcher');
 
-export default {
-  addItem(item) {
+var AppActions = {
+  addItem: function(item) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.ADD_ITEM,
       item: item
     });
   },
-  removeItem(index) {
+  removeItem: function(index) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.REMOVE_ITEM,
       index: index
     });
   },
-  increaseItem(index) {
+  increaseItem: function(index) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.INCREASE_ITEM,
       index: index
     });
   },
-  decreaseItem(index) {
+  decreaseItem: function(index) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.DECREASE_ITEM,
       index: index
     });
   }
 };
+
+module.exports = AppActions;

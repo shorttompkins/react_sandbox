@@ -1,11 +1,8 @@
-var React = require('react'),
-    Header = require('./header');
+import React from 'react';
+import Header from './header';
 
-var Template = React.createClass({
-  propTypes: {
-    children: React.PropTypes.array
-  },
-  render: function() {
+class Template extends React.Component {
+  render() {
     return (
       <div>
         <Header />
@@ -13,6 +10,10 @@ var Template = React.createClass({
       </div>
     );
   }
-});
+}
 
-module.exports = Template;
+Template.propTypes = {
+  children: React.PropTypes.array
+};
+
+export default Template;

@@ -1,16 +1,21 @@
-var React = require('React'),
-    AppActions = require('../../actions/actions');
+import React from 'react';
+import AppActions from '../../actions/actions.js';
 
-var IncreaseItem = React.createClass({
-  propTypes: {
-    index: React.PropTypes.number
-  },
-  handler: function() {
-    AppActions.increaseItem(this.props.index);
-  },
-  render: function() {
-    return <button onClick={ this.handler }>+</button>;
+class IncreaseItem extends React.Component {
+  constructor() {
+    super();
+    this._handler = this._handler.bind(this);
   }
-});
+  _handler() {
+    AppActions.increaseItem(this.props.index);
+  }
+  render() {
+    return (
+      <button onClick={ this._handler }>+</button>
+    );
+  }
+}
 
-module.exports = IncreaseItem;
+IncreaseItem.propTypes = { index: React.PropTypes.number };
+
+export default IncreaseItem;

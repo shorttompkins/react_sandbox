@@ -1,24 +1,23 @@
-var React = require('React'),
-    Catalog = require('./catalog/catalog'),
-    CatalogDetail = require('./catalog/item'),
-    Cart = require('./cart/cart'),
-    Template = require('./layout/template'),
-    Router = require('react-router-component'),
-    Locations = Router.Locations,
-    Location = Router.Location;
+import React from 'react';
+import Catalog from './catalog/catalog.js';
+import Cart from './cart/cart.js';
+import Template from './layout/template';
+import { Locations, Location } from 'react-router-component';
 
-var App = React.createClass({
-  render: function() {
+class App extends React.Component {
+  constructor() {
+    super();
+  }
+  render() {
     return (
       <Template>
         <Locations>
           <Location path="/" handler={Catalog} />
           <Location path="/cart" handler={Cart} />
-          <Location path="/item/:item" handler={CatalogDetail} />
         </Locations>
       </Template>
     );
   }
-});
+}
 
-module.exports = App;
+export default App;

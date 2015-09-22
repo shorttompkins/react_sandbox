@@ -1,21 +1,19 @@
-import React from 'react';
-import AppStore from '../../stores/store.js';
-import RemoveFromCart from './removefromcart.js';
-import IncreaseItem from './increaseitem.js';
-import DecreaseItem from './decreaseitem.js';
-import StoreWatch from '../../mixins/store-watch.js';
-import { Link } from 'react-router-component';
+var React = require('react'),
+    AppStore = require('../../stores/store'),
+    RemoveFromCart = require('./removefromcart'),
+    IncreaseItem = require('./increaseitem'),
+    DecreaseItem = require('./decreaseitem'),
+    StoreWatch = require('../../mixins/store-watch'),
+    Link = require('react-router-component').Link;
 
 function cartItems() {
   return { items: AppStore.getCart() };
 }
 
-//* In order to support mixins, we need to continue to use React.createClass (unfortunately)
-//class Cart extends React.Component {
-let Cart = React.createClass({
+var Cart = React.createClass({
   mixins: [StoreWatch(cartItems)],
 
-  render() {
+  render: function() {
     var total = 0;
     var items = this.state.items.map(function(item, i) {
       var subtotal = item.cost * item.qty;
@@ -53,4 +51,4 @@ let Cart = React.createClass({
   }
 });
 
-export default Cart;
+module.exports = Cart;

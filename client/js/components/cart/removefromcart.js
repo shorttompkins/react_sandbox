@@ -1,16 +1,21 @@
-var React = require('React'),
-    AppActions = require('../../actions/actions');
+import React from 'react';
+import AppActions from '../../actions/actions.js';
 
-var RemmoveFromCart = React.createClass({
-  propTypes: {
-    index: React.PropTypes.number
-  },
-  handler: function() {
-    AppActions.removeItem(this.props.index);
-  },
-  render: function() {
-    return <button onClick={ this.handler }>x</button>;
+class RemmoveFromCart extends React.Component {
+  constructor() {
+    super();
+    this._handler = this._handler.bind(this);
   }
-});
+  _handler() {
+    AppActions.removeItem(this.props.index);
+  }
+  render() {
+    return (
+      <button onClick={ this._handler }>x</button>
+    );
+  }
+}
 
-module.exports = RemmoveFromCart;
+RemmoveFromCart.propTypes = { index: React.PropTypes.number };
+
+export default RemmoveFromCart;
