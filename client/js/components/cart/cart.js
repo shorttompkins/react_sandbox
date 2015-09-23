@@ -42,7 +42,7 @@ let Cart = React.createClass({
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="4" align="right">Total</td>
+            <td colSpan="4" align="right">Total</td>
             <td align="right">${total}</td>
           </tr>
         </tfoot>
