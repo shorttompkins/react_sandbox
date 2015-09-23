@@ -1,9 +1,9 @@
 import React from 'react';
-import AppStore from '../../stores/store.js';
-import RemoveFromCart from './removefromcart.js';
-import IncreaseItem from './increaseitem.js';
-import DecreaseItem from './decreaseitem.js';
-import StoreWatch from '../../mixins/store-watch.js';
+import AppStore from '../../stores/store';
+import RemoveFromCart from './removefromcart';
+import IncreaseItem from './increaseitem';
+import DecreaseItem from './decreaseitem';
+import StoreWatch from '../../mixins/store-watch';
 import { Link } from 'react-router-component';
 
 function cartItems() {

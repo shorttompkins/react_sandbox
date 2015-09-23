@@ -1,6 +1,6 @@
 import React from 'react';
-import Catalog from './catalog/catalog.js';
-import Cart from './cart/cart.js';
+import Catalog from './catalog/catalog';
+import Cart from './cart/cart';
 import Template from './layout/template';
 import { Locations, Location } from 'react-router-component';
 

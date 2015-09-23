@@ -1,5 +1,5 @@
 import React from 'react';
-import AppActions from '../../actions/actions.js';
+import AppActions from '../../actions/actions';
 
 class AddToCart extends React.Component{
   constructor() {

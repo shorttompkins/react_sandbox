@@ -1,6 +1,6 @@
 import React from 'react';
-import AddToCart from './addtocart.js';
-import AppStore from '../../stores/store.js';
+import AddToCart from './addtocart';
+import AppStore from '../../stores/store';
 
 let _getCatalog = function() {
   return { items: AppStore.getCatalog() };
