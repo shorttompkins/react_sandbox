@@ -2,14 +2,10 @@ import React from 'react';
 import AddToCart from './addtocart';
 import AppStore from '../../stores/store';
 
-let _getCatalog = function() {
-  return { items: AppStore.getCatalog() };
-};
-
 class Catalog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = _getCatalog();
+    this.state = this._getCatalog();
   }
 
   render() {
@@ -27,6 +23,10 @@ class Catalog extends React.Component {
         {items}
       </table>
     );
+  }
+
+  _getCatalog() {
+    return { items: AppStore.getCatalog() };
   }
 }
 

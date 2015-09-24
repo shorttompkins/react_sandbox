@@ -3,7 +3,6 @@ import AppStore from '../../stores/store';
 import RemoveFromCart from './removefromcart';
 import IncreaseItem from './increaseitem';
 import DecreaseItem from './decreaseitem';
-import StoreWatch from '../../mixins/store-watch';
 import { Link } from 'react-router-component';
 
 function cartItems() {
@@ -12,8 +11,23 @@ function cartItems() {
 
 //* In order to support mixins, we need to continue to use React.createClass (unfortunately)
 //class Cart extends React.Component {
-let Cart = React.createClass({
-  mixins: [StoreWatch(cartItems)],
+class Cart extends React.Component {
+  constructor() {
+    super();
+    this.state = cartItems();
+  }
+
+  componentWillMount() {
+    AppStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    AppStore.removeChangeListener(this._onChange);
+  }
+
+  _onChange() {
+    this.setState(cartItems());
+  }
 
   render() {
     var total = 0;
@@ -51,6 +65,6 @@ let Cart = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Cart;
