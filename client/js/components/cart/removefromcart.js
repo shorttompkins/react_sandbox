@@ -1,21 +1,23 @@
 import React from 'react';
 import AppActions from '../../actions/actions';
 
-class RemmoveFromCart extends React.Component {
+class RemoveFromCart extends React.Component {
+  static propTypes = {
+    index: React.PropTypes.number
+  }
+
   constructor() {
     super();
-    this._handler = this._handler.bind(this);
   }
-  _handler() {
+
+  _handler = () => {
     AppActions.removeItem(this.props.index);
   }
+
   render() {
     return (
       <button onClick={ this._handler }>x</button>
     );
   }
 }
-
-RemmoveFromCart.propTypes = { index: React.PropTypes.number };
-
-export default RemmoveFromCart;
+export default RemoveFromCart;

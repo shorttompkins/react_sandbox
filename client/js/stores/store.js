@@ -3,7 +3,6 @@ import AppConstants from '../constants/constants.js';
 import assign from 'react/lib/Object.assign';
 import { EventEmitter } from 'events';
 
-
 const CHANGE_EVENT = 'change';
 
 let _catalog = [],
@@ -61,9 +60,6 @@ function _cartTotals() {
   return {'qty': qty, 'total': total };
 }
 
-
-
-
 var AppStore = assign(EventEmitter.prototype, {
   emitChange() {
     this.emit(CHANGE_EVENT);
@@ -91,21 +87,21 @@ var AppStore = assign(EventEmitter.prototype, {
 });
 
 AppStore.dispatcherIndex = AppDispatcher.register(function(payload) {
-  var action = payload.action;
+  //var action = payload.action;
 
-  switch(action.actionType) {
-  case AppConstants.ADD_ITEM:
-    _addItem(action.item);
-    break;
-  case AppConstants.REMOVE_ITEM:
-    _removeItem(action.index);
-    break;
-  case AppConstants.INCREASE_ITEM:
-    _increaseItem(action.index);
-    break;
-  case AppConstants.DECREASE_ITEM:
-    _decreaseItem(action.index);
-    break;
+  switch(payload.actionType) {
+    case AppConstants.ADD_ITEM:
+      _addItem(payload.item);
+      break;
+    case AppConstants.REMOVE_ITEM:
+      _removeItem(payload.index);
+      break;
+    case AppConstants.INCREASE_ITEM:
+      _increaseItem(payload.index);
+      break;
+    case AppConstants.DECREASE_ITEM:
+      _decreaseItem(payload.index);
+      break;
   }
 
   AppStore.emitChange();

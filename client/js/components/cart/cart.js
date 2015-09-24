@@ -3,22 +3,32 @@ import AppStore from '../../stores/store';
 import RemoveFromCart from './removefromcart';
 import IncreaseItem from './increaseitem';
 import DecreaseItem from './decreaseitem';
-import StoreWatch from '../../mixins/store-watch';
 import { Link } from 'react-router-component';
 
 function cartItems() {
   return { items: AppStore.getCart() };
 }
 
-//* In order to support mixins, we need to continue to use React.createClass (unfortunately)
-//class Cart extends React.Component {
-let Cart = React.createClass({
-  mixins: [StoreWatch(cartItems)],
+class Cart extends React.Component {
+  constructor() {
+    super();
+    this.state = cartItems();
+    AppStore.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    AppStore.removeChangeListener(this._onChange);
+  }
+
+  _onChange = () => {
+    this.setState(cartItems());
+  }
 
   render() {
-    var total = 0;
-    var items = this.state.items.map(function(item, i) {
-      var subtotal = item.cost * item.qty;
+    let total = 0;
+    let items = this.state.items.map(function(item, i) {
+      let subtotal = item.cost * item.qty;
+
       total += subtotal;
       return (
         <tr key={item.id}>
@@ -43,7 +53,7 @@ let Cart = React.createClass({
         <tfoot>
           <tr>
             <td colSpan="4" align="right">Total</td>
-            <td align="right">${total}</td>
+            <td align="right"><strong>${total}</strong></td>
           </tr>
         </tfoot>
         </table>
@@ -51,6 +61,6 @@ let Cart = React.createClass({
       </div>
     );
   }
-});
+}
 
 export default Cart;

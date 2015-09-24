@@ -2,12 +2,15 @@ import React from 'react';
 import AppActions from '../../actions/actions';
 
 class AddToCart extends React.Component{
-  constructor() {
-    super();
-    this._handler = this._handler.bind(this);
+  static propTypes = {
+    item: React.PropTypes.object
   }
 
-  _handler() {
+  constructor() {
+    super();
+  }
+
+  _handler = () => {
     AppActions.addItem(this.props.item);
   }
 
@@ -19,9 +22,5 @@ class AddToCart extends React.Component{
     );
   }
 }
-
-AddToCart.propTypes = {
-  item: React.PropTypes.object
-};
 
 export default AddToCart;

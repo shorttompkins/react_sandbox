@@ -20,7 +20,7 @@ gulp.task('transform', function () {
     extensions: ['.js'],
     debug: true
   })
-  .transform(babelify)
+  .transform(babelify, { stage: 0})
   .bundle()
   .pipe(source('app.js'))
   .pipe(gulp.dest('build'));
