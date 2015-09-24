@@ -21,7 +21,8 @@
     "lodash": "~3.7.0",
     "react": "^0.13.3",
     "react-async": "^2.1.0",
-    "react-router-component": "^0.26.0"
+    "react-router-component": "^0.26.0",
+    "superagent": "^1.4.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
