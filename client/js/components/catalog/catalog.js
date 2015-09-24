@@ -3,8 +3,8 @@ import AddToCart from './addtocart';
 import AppStore from '../../stores/store';
 
 class Catalog extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = this._getCatalog();
   }
 

@@ -2,6 +2,10 @@ import React from 'react';
 import Header from './header';
 
 class Template extends React.Component {
+  static propTypes = {
+    children: React.PropTypes.node
+  }
+
   render() {
     return (
       <div>
@@ -11,9 +15,5 @@ class Template extends React.Component {
     );
   }
 }
-
-Template.propTypes = {
-  children: React.PropTypes.node
-};
 
 export default Template;

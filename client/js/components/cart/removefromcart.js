@@ -1,7 +1,11 @@
 import React from 'react';
 import AppActions from '../../actions/actions';
 
-class RemmoveFromCart extends React.Component {
+class RemoveFromCart extends React.Component {
+  static propTypes = {
+    index: React.PropTypes.number
+  }
+
   constructor() {
     super();
   }
@@ -16,7 +20,4 @@ class RemmoveFromCart extends React.Component {
     );
   }
 }
-
-RemmoveFromCart.propTypes = { index: React.PropTypes.number };
-
-export default RemmoveFromCart;
+export default RemoveFromCart;

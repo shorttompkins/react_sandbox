@@ -2,6 +2,10 @@ import React from 'react';
 import AppActions from '../../actions/actions';
 
 class IncreaseItem extends React.Component {
+  static propTypes = {
+    index: React.PropTypes.number
+  }
+
   constructor() {
     super();
   }
@@ -16,7 +20,5 @@ class IncreaseItem extends React.Component {
     );
   }
 }
-
-IncreaseItem.propTypes = { index: React.PropTypes.number };
 
 export default IncreaseItem;
