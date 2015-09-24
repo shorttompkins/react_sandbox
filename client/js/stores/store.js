@@ -87,20 +87,20 @@ var AppStore = assign(EventEmitter.prototype, {
 });
 
 AppStore.dispatcherIndex = AppDispatcher.register(function(payload) {
-  var action = payload.action;
+  //var action = payload.action;
 
-  switch(action.actionType) {
+  switch(payload.actionType) {
     case AppConstants.ADD_ITEM:
-      _addItem(action.item);
+      _addItem(payload.item);
       break;
     case AppConstants.REMOVE_ITEM:
-      _removeItem(action.index);
+      _removeItem(payload.index);
       break;
     case AppConstants.INCREASE_ITEM:
-      _increaseItem(action.index);
+      _increaseItem(payload.index);
       break;
     case AppConstants.DECREASE_ITEM:
-      _decreaseItem(action.index);
+      _decreaseItem(payload.index);
       break;
   }
 
