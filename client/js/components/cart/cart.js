@@ -9,15 +9,10 @@ function cartItems() {
   return { items: AppStore.getCart() };
 }
 
-//* In order to support mixins, we need to continue to use React.createClass (unfortunately)
-//class Cart extends React.Component {
 class Cart extends React.Component {
   constructor() {
     super();
     this.state = cartItems();
-  }
-
-  componentWillMount() {
     AppStore.addChangeListener(this._onChange);
   }
 
@@ -25,14 +20,15 @@ class Cart extends React.Component {
     AppStore.removeChangeListener(this._onChange);
   }
 
-  _onChange() {
+  _onChange = () => {
     this.setState(cartItems());
   }
 
   render() {
-    var total = 0;
-    var items = this.state.items.map(function(item, i) {
-      var subtotal = item.cost * item.qty;
+    let total = 0;
+    let items = this.state.items.map(function(item, i) {
+      let subtotal = item.cost * item.qty;
+
       total += subtotal;
       return (
         <tr key={item.id}>
@@ -57,7 +53,7 @@ class Cart extends React.Component {
         <tfoot>
           <tr>
             <td colSpan="4" align="right">Total</td>
-            <td align="right">${total}</td>
+            <td align="right"><strong>${total}</strong></td>
           </tr>
         </tfoot>
         </table>

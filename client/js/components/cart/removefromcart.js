@@ -4,11 +4,12 @@ import AppActions from '../../actions/actions';
 class RemmoveFromCart extends React.Component {
   constructor() {
     super();
-    this._handler = this._handler.bind(this);
   }
-  _handler() {
+
+  _handler = () => {
     AppActions.removeItem(this.props.index);
   }
+
   render() {
     return (
       <button onClick={ this._handler }>x</button>

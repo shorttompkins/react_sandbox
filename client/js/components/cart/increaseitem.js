@@ -4,11 +4,12 @@ import AppActions from '../../actions/actions';
 class IncreaseItem extends React.Component {
   constructor() {
     super();
-    this._handler = this._handler.bind(this);
   }
-  _handler() {
+
+  _handler = () => {
     AppActions.increaseItem(this.props.index);
   }
+
   render() {
     return (
       <button onClick={ this._handler }>+</button>

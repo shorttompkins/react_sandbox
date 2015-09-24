@@ -4,10 +4,9 @@ import AppActions from '../../actions/actions';
 class AddToCart extends React.Component{
   constructor() {
     super();
-    this._handler = this._handler.bind(this);
   }
 
-  _handler() {
+  _handler = () => {
     AppActions.addItem(this.props.item);
   }
 
